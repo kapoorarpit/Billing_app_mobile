@@ -26,7 +26,7 @@ body {
     width: 180mm;
     margin: auto;
     padding-top: 70mm;
-    padding-bottom: 80px; /* 🔥 FIX: prevents button overlap */
+    padding-bottom: 80px;
     box-sizing: border-box;
 }
 
@@ -81,8 +81,6 @@ th, td {
     padding: 10px 8px;
     border-left: 2px solid #000;
     border-right: 2px solid #000;
-    border-top: none;
-    border-bottom: none;
     font-size: 16px;
 }
 
@@ -132,7 +130,7 @@ td:nth-child(5) input {
     justify-content: space-between;
 }
 
-/* PRINT BUTTON */
+/* BUTTON */
 .print-btn {
     position: fixed;
     bottom: 0;
@@ -213,11 +211,7 @@ td:nth-child(5) input {
             <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
             <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
             <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            
-           
+
             <tr>
                 <td colspan="4" style="text-align:right;">Total ₹</td>
                 <td><input id="grand-total" readonly></td>
@@ -234,7 +228,8 @@ td:nth-child(5) input {
 
 </div>
 
-<button class="print-btn" onclick="window.print()">🖨️ Print</button>
+<!-- ✅ SINGLE BUTTON -->
+<button class="print-btn" onclick="window.print()">🖨️ Print / Save PDF</button>
 
 <script>
 document.addEventListener("input", function(e) {
