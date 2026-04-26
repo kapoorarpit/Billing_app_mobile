@@ -26,7 +26,7 @@ body {
     width: 180mm;
     margin: auto;
     padding-top: 70mm;
-    padding-bottom: 10mm;
+    padding-bottom: 80px; /* 🔥 FIX: prevents button overlap */
     box-sizing: border-box;
 }
 
@@ -37,7 +37,6 @@ body {
     margin-bottom: 15px;
 }
 
-/* INLINE FIELD */
 .field-inline {
     display: flex;
     align-items: center;
@@ -63,24 +62,21 @@ body {
     font-size: 16px;
 }
 
-/* ================= TABLE ================= */
-
+/* TABLE */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 15mm;
+    margin-top: 12mm;
     border: 2px solid #000;
     table-layout: fixed;
 }
 
-/* Column widths */
 th:nth-child(1), td:nth-child(1) { width: 8%; }
 th:nth-child(2), td:nth-child(2) { width: 50%; }
 th:nth-child(3), td:nth-child(3) { width: 10%; }
 th:nth-child(4), td:nth-child(4) { width: 16%; }
 th:nth-child(5), td:nth-child(5) { width: 16%; }
 
-/* Bigger table */
 th, td {
     padding: 10px 8px;
     border-left: 2px solid #000;
@@ -112,65 +108,47 @@ table input {
     border: none;
     background: none;
     font-size: 16px;
-    padding: 4px 2px;
 }
 
-/* S.No small */
 td:first-child input {
     width: 40px;
     text-align: center;
 }
 
-/* Right align numbers */
 td:nth-child(3) input,
 td:nth-child(4) input,
 td:nth-child(5) input {
     text-align: right;
 }
 
-/* ================= FOOTER ================= */
-
+/* FOOTER */
 .footer {
-    margin-top: 10mm;
-    page-break-inside: avoid;
+    display: none;
+    margin-top: 2mm;
 }
 
 .footer-bottom {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
 }
 
-/* ================= FULL WIDTH PRINT BUTTON ================= */
-
+/* PRINT BUTTON */
 .print-btn {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-
-    padding: 18px 0;
+    padding: 20px;
     font-size: 20px;
-    text-align: center;
-
     background: #3b82f6;
     color: white;
     border: none;
-    border-top: 2px solid #000;
-
     cursor: pointer;
-    z-index: 9999;
-
-    box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
-}
-
-.print-btn:hover {
-    background: #2563eb;
 }
 
 /* PRINT */
-
 @media print {
+
     .bg-img {
         display: block;
         position: fixed;
@@ -184,6 +162,10 @@ td:nth-child(5) input {
     .print-btn {
         display: none;
     }
+
+    .footer {
+        display: block;
+    }
 }
 </style>
 </head>
@@ -194,7 +176,6 @@ td:nth-child(5) input {
 
 <div class="container">
 
-    <!-- Name + Date -->
     <div class="form-row">
         <div class="field-inline">
             <label>Name</label>
@@ -207,13 +188,11 @@ td:nth-child(5) input {
         </div>
     </div>
 
-    <!-- Address -->
     <div class="field-inline full-width">
         <label>Address</label>
         <input type="text">
     </div>
 
-    <!-- Table -->
     <table>
         <thead>
             <tr>
@@ -235,7 +214,10 @@ td:nth-child(5) input {
             <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
             <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
             <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-
+            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
+            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
+            
+           
             <tr>
                 <td colspan="4" style="text-align:right;">Total ₹</td>
                 <td><input id="grand-total" readonly></td>
@@ -243,7 +225,6 @@ td:nth-child(5) input {
         </tbody>
     </table>
 
-    <!-- Footer -->
     <div class="footer">
         <div class="footer-bottom">
             <p>ह. क्रेता</p>
@@ -256,19 +237,13 @@ td:nth-child(5) input {
 <button class="print-btn" onclick="window.print()">🖨️ Print</button>
 
 <script>
-function calculateGrandTotal() {
-    let total = 0;
-
-    document.querySelectorAll(".row-total").forEach(input => {
-        total += parseFloat(input.value) || 0;
-    });
-
-    document.getElementById("grand-total").value = total.toFixed(2);
-}
-
 document.addEventListener("input", function(e) {
     if (e.target.classList.contains("row-total")) {
-        calculateGrandTotal();
+        let total = 0;
+        document.querySelectorAll(".row-total").forEach(input => {
+            total += parseFloat(input.value) || 0;
+        });
+        document.getElementById("grand-total").value = total.toFixed(2);
     }
 });
 </script>
