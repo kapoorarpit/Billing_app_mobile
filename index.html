@@ -17,11 +17,11 @@ body {
     font-weight: bold;
 }
 
-/* 🔥 NO HEIGHT HERE */
+/* Container */
 .container {
     width: 180mm;
     margin: auto;
-    padding: 52mm 10mm 8mm 10mm; /* 🔥 tighter */
+    padding: 50mm 10mm 8mm 10mm; /* tighter */
     box-sizing: border-box;
 }
 
@@ -33,7 +33,7 @@ body {
 @media print {
     .bg-img {
         display: block;
-        position: absolute; /* 🔥 IMPORTANT */
+        position: absolute;
         top: 0;
         left: 0;
         width: 100%;
@@ -45,8 +45,8 @@ body {
 /* Layout */
 .form-row {
     display: flex;
-    gap: 10px;
-    margin-bottom: 6px;
+    gap: 8px;
+    margin-bottom: 5px;
 }
 
 .field-inline {
@@ -65,12 +65,21 @@ body {
     border-bottom: 2px solid black;
 }
 
+/* 🔥 MAIN BLOCK (NO BREAK) */
+.bill-content {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+}
+
 /* Table */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 3mm; /* 🔥 tighter */
+    margin-top: 3mm;
     border: 2px solid black;
+
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
 }
 
 th:nth-child(1), td:nth-child(1) { width: 8%; }
@@ -80,7 +89,7 @@ th:nth-child(4), td:nth-child(4) { width: 16%; }
 th:nth-child(5), td:nth-child(5) { width: 16%; }
 
 th, td {
-    padding: 5px; /* 🔥 tighter */
+    padding: 5px;
     border-left: 2px solid black;
     border-right: 2px solid black;
     font-size: 13px;
@@ -112,7 +121,7 @@ td:first-child input {
 /* Footer */
 .footer {
     display: none;
-    margin-top: 3mm;
+    margin-top: 4mm;
 }
 
 /* Button */
@@ -126,7 +135,7 @@ td:first-child input {
     border: none;
 }
 
-/* 🔥 PRINT CONTROL */
+/* Print */
 @media print {
 
     .print-btn {
@@ -135,10 +144,6 @@ td:first-child input {
 
     .footer {
         display: block;
-    }
-
-    table, .footer {
-        page-break-inside: avoid;
     }
 
     body {
@@ -154,6 +159,7 @@ td:first-child input {
 
 <div class="container">
 
+    <!-- Header -->
     <div class="form-row">
         <div class="field-inline">
             <label>Name</label>
@@ -171,39 +177,44 @@ td:first-child input {
         <input>
     </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>S.No.</th>
-                <th>Item</th>
-                <th>Weight</th>
-                <th>Rate</th>
-                <th>Total</th>
-            </tr>
-        </thead>
+    <!-- 🔥 NON-BREAKABLE BLOCK -->
+    <div class="bill-content">
 
-        <tbody>
-            <!-- 🔥 KEEP 6–7 ROWS ONLY -->
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <table>
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Item</th>
+                    <th>Weight</th>
+                    <th>Rate</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
 
-            <tr>
-                <td colspan="4" style="text-align:right;">Total ₹</td>
-                <td><input></td>
-            </tr>
-        </tbody>
-    </table>
+            <tbody>
+                <!-- 🔥 KEEP 6–7 ROWS ONLY -->
+                <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+                <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+                <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+                <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+                <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+                <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+                <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
 
-    <div class="footer">
-        <div style="display:flex; justify-content:space-between;">
-            <p>ह. क्रेता</p>
-            <p>अधिकृत ह.</p>
+                <tr>
+                    <td colspan="4" style="text-align:right;">Total ₹</td>
+                    <td><input></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="footer">
+            <div style="display:flex; justify-content:space-between;">
+                <p>ह. क्रेता</p>
+                <p>अधिकृत ह.</p>
+            </div>
         </div>
+
     </div>
 
 </div>
