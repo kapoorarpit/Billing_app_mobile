@@ -17,11 +17,11 @@ body {
     font-weight: bold;
 }
 
-/* 🔥 EXACT SAFE WIDTH */
+/* 🔥 SAFE PRINT AREA (IMPORTANT) */
 .container {
-    width: 178mm;   /* slightly reduced */
+    width: 165mm;              /* safe width */
     margin: auto;
-    padding: 48mm 8mm 6mm 8mm;  /* 🔥 tighter */
+    padding: 45mm 8mm 6mm 8mm; /* safe spacing */
     box-sizing: border-box;
 }
 
@@ -46,7 +46,7 @@ body {
 .form-row {
     display: flex;
     gap: 6px;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
 }
 
 .field-inline {
@@ -63,20 +63,20 @@ body {
 
 .full-width {
     width: 100%;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
 }
 
 /* Table */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 2mm;  /* 🔥 reduced */
+    margin-top: 2mm;
     border: 2px solid black;
 }
 
 th, td {
-    padding: 4px;   /* 🔥 critical reduction */
-    font-size: 12px; /* 🔥 slightly smaller */
+    padding: 4px;         /* tight */
+    font-size: 12px;      /* compact */
     border-left: 2px solid black;
     border-right: 2px solid black;
 }
@@ -90,10 +90,14 @@ tbody tr:last-child td {
     border-bottom: 2px solid black;
 }
 
-/* Inputs */
 table input {
     width: 100%;
     border: none;
+}
+
+td:first-child input {
+    width: 28px;
+    text-align: center;
 }
 
 /* Footer */
@@ -107,7 +111,7 @@ table input {
     position: fixed;
     bottom: 0;
     width: 100%;
-    padding: 18px;
+    padding: 16px;
     background: #3b82f6;
     color: white;
     border: none;
@@ -137,6 +141,7 @@ table input {
 
 <div class="container">
 
+    <!-- HEADER -->
     <div class="form-row">
         <div class="field-inline">
             <label>Name</label>
@@ -154,6 +159,7 @@ table input {
         <input>
     </div>
 
+    <!-- TABLE -->
     <table>
         <thead>
             <tr>
@@ -166,7 +172,7 @@ table input {
         </thead>
 
         <tbody>
-            <!-- 🔥 MAX 6 ROWS -->
+            <!-- 🔥 STRICT LIMIT: 6 ROWS -->
             <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
             <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
             <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
@@ -181,6 +187,7 @@ table input {
         </tbody>
     </table>
 
+    <!-- FOOTER -->
     <div class="footer">
         <div style="display:flex; justify-content:space-between;">
             <p>ह. क्रेता</p>
