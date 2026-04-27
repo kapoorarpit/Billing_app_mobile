@@ -17,21 +17,23 @@ body {
     font-weight: bold;
 }
 
-/* Container */
+/* 🔥 A4 FULL PAGE CONTAINER */
 .container {
     width: 180mm;
+    height: 297mm;
     margin: auto;
     padding: 55mm 10mm 10mm 10mm;
     box-sizing: border-box;
-    position: relative;
+
+    display: flex;
+    flex-direction: column;
 }
 
-/* Background */
+/* 🔥 BACKGROUND */
 .bg-img {
     display: none;
 }
 
-/* 🔥 FIXED BACKGROUND */
 @media print {
     .bg-img {
         display: block;
@@ -67,14 +69,17 @@ body {
     border-bottom: 2px solid black;
 }
 
-/* Table */
+/* 🔥 TABLE AUTO EXPAND */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 4mm;
     border: 2px solid black;
+
+    flex: 1;
 }
 
+/* Column widths */
 th:nth-child(1), td:nth-child(1) { width: 8%; }
 th:nth-child(2), td:nth-child(2) { width: 46%; }
 th:nth-child(3), td:nth-child(3) { width: 14%; }
@@ -91,6 +96,14 @@ th, td {
 thead th {
     border-top: 2px solid black;
     border-bottom: 2px solid black;
+}
+
+tbody {
+    height: 100%;
+}
+
+tbody tr {
+    height: auto;
 }
 
 tbody tr:last-child td {
@@ -111,13 +124,13 @@ td:first-child input {
     text-align: center;
 }
 
-/* Footer */
+/* 🔥 FOOTER BOTTOM LOCK */
 .footer {
     display: none;
-    margin-top: 3mm;
+    margin-top: auto;
 }
 
-/* Button */
+/* BUTTON */
 .print-btn {
     position: fixed;
     bottom: 0;
@@ -156,6 +169,7 @@ td:first-child input {
 
 <div class="container">
 
+    <!-- HEADER -->
     <div class="form-row">
         <div class="field-inline">
             <label>Name</label>
@@ -173,6 +187,7 @@ td:first-child input {
         <input>
     </div>
 
+    <!-- TABLE -->
     <table>
         <thead>
             <tr>
@@ -185,7 +200,7 @@ td:first-child input {
         </thead>
 
         <tbody>
-            <!-- 🔥 KEEP MAX 8 ROWS -->
+            <!-- 🔥 KEEP 6–8 ROWS -->
             <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
             <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
             <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
@@ -202,6 +217,7 @@ td:first-child input {
         </tbody>
     </table>
 
+    <!-- FOOTER -->
     <div class="footer">
         <div style="display:flex; justify-content:space-between;">
             <p>ह. क्रेता</p>
@@ -211,6 +227,7 @@ td:first-child input {
 
 </div>
 
+<!-- BUTTON -->
 <button class="print-btn" onclick="window.print()">🖨️ Print / Save PDF</button>
 
 <script>
