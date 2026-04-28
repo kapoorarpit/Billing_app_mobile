@@ -11,6 +11,11 @@
     margin: 0;
 }
 
+* {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -60,6 +65,8 @@ body {
     padding: 6px;
     background: none;
     font-size: 16px;
+    -webkit-appearance: none;
+    border-radius: 0;
 }
 
 /* TABLE */
@@ -106,6 +113,8 @@ table input {
     border: none;
     background: none;
     font-size: 16px;
+    -webkit-appearance: none;
+    border-radius: 0;
 }
 
 td:first-child input {
@@ -142,27 +151,69 @@ td:nth-child(5) input {
     color: white;
     border: none;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 /* PRINT */
 @media print {
 
-    .bg-img {
+    html, body {
+        width: 210mm;
+        height: 297mm;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Background image: use absolute inside a fixed wrapper for Safari compat */
+    .bg-img-wrapper {
         display: block;
-        position: fixed;
+        position: absolute;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
+        width: 210mm;
+        height: 297mm;
         z-index: -1;
+        overflow: hidden;
+    }
+
+    .bg-img {
+        display: block;
+        width: 210mm;
+        height: 297mm;
+        object-fit: cover;
+        object-position: top left;
     }
 
     .print-btn {
-        display: none;
+        display: none !important;
     }
 
     .footer {
         display: block;
+    }
+
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Prevent Safari from adding extra space for inputs */
+    input {
+        -webkit-appearance: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    /* Ensure table borders print on Safari */
+    table, th, td {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    th {
+        background-color: rgba(200,200,200,0.6) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
 }
 </style>
@@ -170,7 +221,10 @@ td:nth-child(5) input {
 
 <body>
 
-<img src="background.png" class="bg-img">
+<!-- Wrapper needed for Safari print background fix -->
+<div class="bg-img-wrapper">
+    <img src="background.png" class="bg-img">
+</div>
 
 <div class="container">
 
@@ -231,7 +285,6 @@ td:nth-child(5) input {
 
 </div>
 
-<!-- ✅ SINGLE BUTTON -->
 <button class="print-btn" onclick="window.print()">🖨️ Print</button>
 
 <script>
