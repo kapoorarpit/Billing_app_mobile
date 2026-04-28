@@ -7,7 +7,6 @@
 
 <style>
 
-/* GLOBAL */
 * {
     box-sizing: border-box;
 }
@@ -21,18 +20,38 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     font-weight: bold;
-    color: #000;
 }
 
-/* CONTAINER */
-.container {
+/* 🔥 PAGE WRAPPER */
+.page {
+    position: relative;
+    width: 210mm;
+    height: 297mm;
+    margin: auto;
+}
+
+/* 🔥 BACKGROUND IMAGE (REAL FIX) */
+.bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 210mm;
+    height: 297mm;
+    object-fit: cover;
+    z-index: 0;
+}
+
+/* CONTENT ABOVE BACKGROUND */
+.content {
+    position: relative;
+    z-index: 1;
     width: 180mm;
     margin: auto;
     padding-top: 60mm;
     padding-bottom: 20mm;
 }
 
-/* FORM LAYOUT (NO FLEX) */
+/* FORM */
 .form-row {
     width: 100%;
     margin-bottom: 10px;
@@ -51,7 +70,6 @@ body {
 .field-inline label {
     display: inline-block;
     width: 70px;
-    font-size: 16px;
 }
 
 .field-inline input {
@@ -60,7 +78,6 @@ body {
     border-bottom: 2px solid #000;
     padding: 6px;
     background: none;
-    font-size: 16px;
 }
 
 /* TABLE */
@@ -75,7 +92,6 @@ table {
 th, td {
     padding: 8px;
     border: 2px solid #000;
-    font-size: 16px;
 }
 
 th:nth-child(1), td:nth-child(1) { width: 8%; }
@@ -92,23 +108,20 @@ table input {
     width: 100%;
     border: none;
     background: none;
-    font-size: 16px;
 }
 
-/* ALIGNMENT */
 td:first-child input {
     text-align: center;
 }
 
-td:nth-child(3) input,
-td:nth-child(4) input,
-td:nth-child(5) input {
+td:nth-child(3),
+td:nth-child(4),
+td:nth-child(5) {
     text-align: right;
 }
 
 /* FOOTER */
 .footer {
-    display: none;
     margin-top: 5mm;
 }
 
@@ -121,38 +134,27 @@ td:nth-child(5) input {
 .print-btn {
     position: fixed;
     bottom: 0;
-    left: 0;
     width: 100%;
     padding: 20px;
-    font-size: 20px;
+    font-size: 18px;
     background: #3b82f6;
     color: white;
     border: none;
-    cursor: pointer;
 }
 
-/* PRINT FIX (IMPORTANT) */
+/* PRINT */
 @media print {
+    .print-btn {
+        display: none;
+    }
 
-    html, body {
-        width: 210mm;
+    tr, td {
+        page-break-inside: avoid;
     }
 
     body {
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
-    }
-
-    .print-btn {
-        display: none;
-    }
-
-    .footer {
-        display: block;
-    }
-
-    tr, td, th {
-        page-break-inside: avoid;
     }
 }
 
@@ -161,73 +163,75 @@ td:nth-child(5) input {
 
 <body>
 
-<div class="container">
+<div class="page">
 
-    <div class="form-row">
-        <div class="field-inline">
-            <label>Name</label>
+    <!-- ✅ BACKGROUND IMAGE -->
+    <img src="background.png" class="bg-img">
+
+    <div class="content">
+
+        <div class="form-row">
+            <div class="field-inline">
+                <label>Name</label>
+                <input type="text">
+            </div>
+
+            <div class="field-inline">
+                <label>Date</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="field-inline full-width">
+            <label>Address</label>
             <input type="text">
         </div>
 
-        <div class="field-inline">
-            <label>Date</label>
-            <input type="text">
-        </div>
-    </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Item</th>
+                    <th>Weight</th>
+                    <th>Rate</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
 
-    <div class="field-inline full-width">
-        <label>Address</label>
-        <input type="text">
-    </div>
+            <tbody>
+                <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
+                <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
+                <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
+                <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
+                <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
+                <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
+                <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
+                <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
+                <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
+                <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
 
-    <table>
-        <thead>
-            <tr>
-                <th>S.No.</th>
-                <th>Item</th>
-                <th>Weight</th>
-                <th>Rate</th>
-                <th>Total</th>
-            </tr>
-        </thead>
+                <tr>
+                    <td colspan="4" style="text-align:right;">Total ₹</td>
+                    <td><input id="grand-total" readonly></td>
+                </tr>
+            </tbody>
+        </table>
 
-        <tbody>
+        <div class="footer">
+            <br>
+            <div class="footer-bottom">
+                <div>ह. क्रेता</div>
+                <div style="text-align:right;">अधिकृत ह.</div>
+            </div>
 
-            <!-- ROWS -->
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-
-            <!-- TOTAL -->
-            <tr>
-                <td colspan="4" style="text-align:right;">Total ₹</td>
-                <td><input id="grand-total" readonly></td>
-            </tr>
-
-        </tbody>
-    </table>
-
-    <div class="footer">
-        <br>
-        <div class="footer-bottom">
-            <div>ह. क्रेता</div>
-            <div style="text-align:right;">अधिकृत ह.</div>
+            <div style="margin-top:5mm;">
+                <div>पीले गहने वाली दुकान</div>
+                <div>भूल चूक लेनी देनी।</div>
+                <div>समस्त विवादों का न्यायिक क्षेत्र बदायूँ ही होगा।</div>
+            </div>
         </div>
 
-        <div style="margin-top:5mm;">
-            <div>पीले गहने वाली दुकान</div>
-            <div>भूल चूक लेनी देनी।</div>
-            <div>समस्त विवादों का न्यायिक क्षेत्र बदायूँ ही होगा।</div>
-        </div>
     </div>
-
 </div>
 
 <button class="print-btn" onclick="window.print()">🖨️ Print</button>
