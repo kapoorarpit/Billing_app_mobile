@@ -215,22 +215,22 @@ td:nth-child(5) input { text-align: right; }
             </tr>
         </thead>
         <tbody>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
-            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input class="row-total"></td></tr>
+            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+            <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
             <tr>
                 <td colspan="4" style="text-align:right; border-bottom:2px solid #000; font-size:14px;">Total ₹</td>
-                <td style="border-bottom:2px solid #000;"><input id="grand-total" readonly style="text-align:right;"></td>
+                <td style="border-bottom:2px solid #000;"><input style="text-align: right;"></td>
             </tr>
         </tbody>
     </table>
@@ -258,15 +258,15 @@ td:nth-child(5) input { text-align: right; }
 
 <script>
 // Auto grand total
-document.addEventListener("input", function(e) {
-    if (e.target.classList.contains("row-total")) {
-        let total = 0;
-        document.querySelectorAll(".row-total").forEach(i => {
-            total += parseFloat(i.value) || 0;
-        });
-        document.getElementById("grand-total").value = total % 1 === 0 ? total : total.toFixed(2);
-    }
-});
+// document.addEventListener("input", function(e) {
+//     if (e.target.classList.contains("row-total")) {
+//         let total = 0;
+//         document.querySelectorAll(".row-total").forEach(i => {
+//             total += parseFloat(i.value) || 0;
+//         });
+//         document.getElementById("grand-total").value = total % 1 === 0 ? total : total.toFixed(2);
+//     }
+// });
 
 async function generatePDF() {
     const btn = document.getElementById('pdf-btn');
